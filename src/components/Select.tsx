@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import classNames from "classnames";
 import selectArrow from "../assets/svg/select-arrow.svg";
+import { useOutsideClickCatcher } from "../hooks/useOutsideClickCatcher";
 
 type Props = {
   options: Array<{ value: string; label: string }>;
@@ -12,14 +13,17 @@ type Props = {
 
 const Select = ({ options, onChange, value, placeholder }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const wrapperRef = useRef(null);
 
   const handleClickOption = (value: string) => {
     setIsOpen(!isOpen);
     onChange(value);
   };
 
+  useOutsideClickCatcher(wrapperRef, setIsOpen);
+
   return (
-    <div className="relative w-full">
+    <div ref={wrapperRef} className="relative w-full">
       <div
         className="bg-black rounded font-inter text-white font-bold p-2 uppercase border border-white/15 flex items-center justify-between"
         onClick={() => setIsOpen(!isOpen)}
