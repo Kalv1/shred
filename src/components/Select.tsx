@@ -1,8 +1,8 @@
 import { useState, useRef } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import classNames from "classnames";
-import selectArrow from "../assets/svg/select-arrow.svg";
-import { useOutsideClickCatcher } from "../hooks/useOutsideClickCatcher";
+import selectArrow from "@/assets/svg/select-arrow.svg";
+import { useOutsideClickCatcher } from "@/hooks/useOutsideClickCatcher";
 
 type Props = {
   options: Array<{ value: string; label: string }>;

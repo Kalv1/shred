@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Navbar from "./components/Navbar";
-import Alert from "./components/Alert";
-import sparkles from "./assets/svg/sparkles.svg";
-import flare from "./assets/png/flare.png";
-import Select from "./components/Select";
+import Navbar from "@/components/Navbar";
+import Alert from "@/components/Alert";
+import sparkles from "@/assets/svg/sparkles.svg";
+import flare from "@/assets/png/flare.png";
+import Select from "@/components/Select";
 
 const App = () => {
   const [gender, setGender] = useState("Male");
