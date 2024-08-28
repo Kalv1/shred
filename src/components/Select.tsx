@@ -5,9 +5,9 @@ import selectArrow from "@/assets/svg/select-arrow.svg";
 import { useOutsideClickCatcher } from "@/hooks/useOutsideClickCatcher";
 
 type Props = {
-  options: Array<{ value: string; label: string }>;
-  onChange: Dispatch<SetStateAction<string>>;
-  value: string;
+  options: Array<{ value: string | number; label: string }>;
+  onChange: Dispatch<SetStateAction<string>> | Dispatch<SetStateAction<number>>;
+  value: string | number;
   placeholder: string;
 };
 
@@ -15,9 +15,9 @@ const Select = ({ options, onChange, value, placeholder }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
 
-  const handleClickOption = (value: string) => {
+  const handleClickOption = (value: string | number) => {
     setIsOpen(!isOpen);
-    onChange(value);
+    onChange(value as SetStateAction<string> & SetStateAction<number>);
   };
 
   useOutsideClickCatcher(wrapperRef, setIsOpen);

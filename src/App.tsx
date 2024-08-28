@@ -5,13 +5,16 @@ import sparkles from "@/assets/svg/sparkles.svg";
 import flare from "@/assets/png/flare.png";
 import Select from "@/components/Select";
 import NumberPicker from "@/components/NumberPicker"
+import { useMetabolismCalculator } from "./hooks/useMetabolismCalculator";
 
 const App = () => {
   const [gender, setGender] = useState("Male");
   const [age, setAge] = useState(18);
   const [weight, setWeight] = useState(80);
   const [height, setHeight] = useState(180);
-  const [activity, setActivity] = useState("Active");
+  const [activity, setActivity] = useState(1.2);
+
+  const { baseMetabolism } = useMetabolismCalculator();
 
   return (
     <div className="w-full min-h-screen bg-black text-white">
@@ -83,13 +86,13 @@ const App = () => {
             value={activity}
             onChange={setActivity}
             options={[
-              { value: "No activity", label: "No activity" },
-              { value: "A bit active", label: "A bit active" },
-              { value: "Active", label: "Active" },
-              { value: "Very active", label: "Very active" },
+              { value: 1.2, label: "A bit active" },
+              { value: 1.4, label: "Active" },
+              { value: 1.6, label: "Very active" },
             ]}
             placeholder="Select your gender"
           />
+          <button className="rounded bg-primary uppercase font-bold" onClick={() => baseMetabolism(gender, age, weight, height, activity)}>Confirm</button>
           </div>
         </div>
       </div>

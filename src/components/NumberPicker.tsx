@@ -24,13 +24,13 @@ const NumberPicker = ({ min, max, value, onChange }: Props) => {
 
     return (
         <div className="bg-black rounded font-inter text-white font-bold uppercase border border-white/15 flex items-center justify-between">
-            <div className="border-r p-2 border-white/15 flex items-center justify-center w-1/3 h-full" onClick={() => handleDecrease()}>
+            <div className="border-r select-none p-2 border-white/15 flex items-center justify-center w-1/5 h-full cursor-pointer hover:bg-white/10 transition ease-in" onClick={() => handleDecrease()}>
                 <p>-</p>
             </div>
-            <div className="border-white/15 p-2 flex items-center justify-center w-1/3 h-full">
+            <div className="border-white/15 p-2 flex items-center justify-center w-3/5 h-full">
                 <input onChange={(e) => onChange(Number(e.target.value))} type="number" value={value.toString()} min={min ?? 0} max={max ?? 100} className="w-full bg-transparent text-white text-center outline-none font-bold text-xl" />
             </div>
-            <div className="border-l border-white/15 p-2 flex items-center justify-center w-1/3 h-full" onClick={() => handleIncrease()}>
+            <div className="border-l select-none border-white/15 p-2 flex items-center justify-center w-1/5 h-full cursor-pointer hover:bg-white/10 transition ease-in" onClick={() => handleIncrease()}>
                 <p>+</p>
             </div>
         </div>
