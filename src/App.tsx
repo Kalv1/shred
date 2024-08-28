@@ -155,11 +155,11 @@ const App = () => {
               <h3 className="text-center text-5xl font-bold mt-5">
                 {Math.round(baseMetabolism)} kcal/day
               </h3>
+              <h2 className="font-bold text-2xl">
+                MACRO<span className="text-primary">.</span>
+              </h2>
             </>
           )}
-          <h2 className="font-bold text-2xl">
-            MACRO<span className="text-primary">.</span>
-          </h2>
         </div>
       </div>
     </div>
