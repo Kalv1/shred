@@ -44,8 +44,8 @@ const Select = ({ options, onChange, value, placeholder }: Props) => {
       {isOpen && (
         <ul className="absolute bg-black rounded w-full border border-white/15 h-fit left-0 -bottom-1 translate-y-full z-50 uppercase font-bold font-inter">
           {options.map((option, index) => (
-            <>
               <li
+                key={index}
                 className={classNames(
                   "flex items-center justify-between p-2 w-full",
                   {
@@ -56,7 +56,6 @@ const Select = ({ options, onChange, value, placeholder }: Props) => {
               >
                 <p className="text-white">{option.label}</p>
               </li>
-            </>
           ))}
         </ul>
       )}
