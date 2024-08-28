@@ -4,9 +4,14 @@ import Alert from "@/components/Alert";
 import sparkles from "@/assets/svg/sparkles.svg";
 import flare from "@/assets/png/flare.png";
 import Select from "@/components/Select";
+import NumberPicker from "@/components/NumberPicker"
 
 const App = () => {
   const [gender, setGender] = useState("Male");
+  const [age, setAge] = useState(18);
+  const [weight, setWeight] = useState(80);
+  const [height, setHeight] = useState(180);
+  const [activity, setActivity] = useState("Active");
 
   return (
     <div className="w-full min-h-screen bg-black text-white">
@@ -61,6 +66,7 @@ const App = () => {
           <h2 className="font-bold text-2xl">
             CALCULATOR<span className="text-primary">.</span>
           </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-8">
           <Select
             value={gender}
             onChange={setGender}
@@ -70,6 +76,21 @@ const App = () => {
             ]}
             placeholder="Select your gender"
           />
+          <NumberPicker value={age} max={100} min={0} onChange={setAge} />
+          <NumberPicker value={weight} min={0} max={300} onChange={setWeight} />
+          <NumberPicker value={height} min={0} max={300} onChange={setHeight} />
+          <Select
+            value={activity}
+            onChange={setActivity}
+            options={[
+              { value: "No activity", label: "No activity" },
+              { value: "A bit active", label: "A bit active" },
+              { value: "Active", label: "Active" },
+              { value: "Very active", label: "Very active" },
+            ]}
+            placeholder="Select your gender"
+          />
+          </div>
         </div>
       </div>
     </div>
