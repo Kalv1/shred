@@ -103,8 +103,11 @@ const App = () => {
         <div className="container mx-auto font-clash py-7">
           <h2 className="font-bold text-2xl">
             CALCULATOR<span className="text-primary">.</span>
+            <small className="text-xs font-normal ml-2">
+              (Harris-Benedict)
+            </small>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-8 mt-5">
             <Select
               value={gender}
               onChange={setGender}
@@ -133,7 +136,7 @@ const App = () => {
               options={[
                 { value: 1.2, label: "A bit active" },
                 { value: 1.4, label: "Active" },
-                { value: 1.6, label: "Very active" },
+                { value: 1.8, label: "Very active" },
               ]}
               placeholder="Select your gender"
             />
@@ -154,6 +157,9 @@ const App = () => {
               </h3>
             </>
           )}
+          <h2 className="font-bold text-2xl">
+            MACRO<span className="text-primary">.</span>
+          </h2>
         </div>
       </div>
     </div>

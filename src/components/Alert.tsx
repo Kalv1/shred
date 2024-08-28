@@ -5,7 +5,7 @@ type Props = {
   children?: React.ReactNode;
 };
 
-const Alert = ({ message, icon, className, children }: Props) => {
+const Alert = ({ icon, className, children }: Props) => {
   return (
     <div
       className={

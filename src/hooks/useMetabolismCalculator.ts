@@ -8,19 +8,9 @@ export const useMetabolismCalculator = () => {
   ) => {
     switch (gender) {
       case "Male":
-        return (
-          13.707 * weight +
-          492.3 * (height / 100) -
-          6.673 * age +
-          77.607 * activity
-        );
+        return (10 * weight + 6.25 * height - 5 * age + 5) * activity;
       case "Female":
-        return (
-          9.74 * weight +
-          172.9 * (height / 100) -
-          4.737 * age +
-          667.05 * activity
-        );
+        return (10 * weight + 6.25 * height - 5 * age - 161) * activity;
       default:
         return 5;
     }
