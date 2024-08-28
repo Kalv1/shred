@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Alert from "@/components/Alert";
 import sparkles from "@/assets/svg/sparkles.svg";
 import flare from "@/assets/png/flare.png";
 import Select from "@/components/Select";
-import NumberPicker from "@/components/NumberPicker"
+import NumberPicker from "@/components/NumberPicker";
 import { useMetabolismCalculator } from "./hooks/useMetabolismCalculator";
+import { useLocalData } from "@/hooks/useLocalData";
 
 const App = () => {
   const [gender, setGender] = useState("Male");
@@ -13,8 +14,42 @@ const App = () => {
   const [weight, setWeight] = useState(80);
   const [height, setHeight] = useState(180);
   const [activity, setActivity] = useState(1.2);
+  const [baseMetabolism, setBaseMetabolism] = useState<number>(0);
 
-  const { baseMetabolism } = useMetabolismCalculator();
+  const { saveMetaData, restoreMetaData } = useLocalData();
+  const { calcBaseMetabolism } = useMetabolismCalculator();
+
+  useEffect(() => {
+    const data = restoreMetaData();
+    if (data) {
+      setGender(data.gender);
+      setAge(data.age);
+      setWeight(data.weight);
+      setHeight(data.height);
+      setActivity(data.activity);
+      setBaseMetabolism(data.baseMetabolism);
+    }
+  }, []);
+
+  const handleValidate = () => {
+    const metabolism = calcBaseMetabolism(
+      gender,
+      age,
+      weight,
+      height,
+      activity
+    );
+    setBaseMetabolism(metabolism);
+
+    saveMetaData({
+      gender,
+      age,
+      weight,
+      height,
+      activity,
+      baseMetabolism: metabolism,
+    });
+  };
 
   return (
     <div className="w-full min-h-screen bg-black text-white">
@@ -70,30 +105,55 @@ const App = () => {
             CALCULATOR<span className="text-primary">.</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-8">
-          <Select
-            value={gender}
-            onChange={setGender}
-            options={[
-              { value: "Male", label: "Male" },
-              { value: "Female", label: "Female" },
-            ]}
-            placeholder="Select your gender"
-          />
-          <NumberPicker value={age} max={100} min={0} onChange={setAge} />
-          <NumberPicker value={weight} min={0} max={300} onChange={setWeight} />
-          <NumberPicker value={height} min={0} max={300} onChange={setHeight} />
-          <Select
-            value={activity}
-            onChange={setActivity}
-            options={[
-              { value: 1.2, label: "A bit active" },
-              { value: 1.4, label: "Active" },
-              { value: 1.6, label: "Very active" },
-            ]}
-            placeholder="Select your gender"
-          />
-          <button className="rounded bg-primary uppercase font-bold" onClick={() => baseMetabolism(gender, age, weight, height, activity)}>Confirm</button>
+            <Select
+              value={gender}
+              onChange={setGender}
+              options={[
+                { value: "Male", label: "Male" },
+                { value: "Female", label: "Female" },
+              ]}
+              placeholder="Select your gender"
+            />
+            <NumberPicker value={age} max={100} min={0} onChange={setAge} />
+            <NumberPicker
+              value={weight}
+              min={0}
+              max={300}
+              onChange={setWeight}
+            />
+            <NumberPicker
+              value={height}
+              min={0}
+              max={300}
+              onChange={setHeight}
+            />
+            <Select
+              value={activity}
+              onChange={setActivity}
+              options={[
+                { value: 1.2, label: "A bit active" },
+                { value: 1.4, label: "Active" },
+                { value: 1.6, label: "Very active" },
+              ]}
+              placeholder="Select your gender"
+            />
+            <button
+              className="rounded bg-primary uppercase font-bold"
+              onClick={() => handleValidate()}
+            >
+              Confirm
+            </button>
           </div>
+          {baseMetabolism !== 0 && (
+            <>
+              <h2 className="text-center mt-8 text-2xl font-bold">
+                YOUR OBJECTIVE IS<span className="text-primary">.</span>
+              </h2>
+              <h3 className="text-center text-5xl font-bold mt-5">
+                {Math.round(baseMetabolism)} kcal/day
+              </h3>
+            </>
+          )}
         </div>
       </div>
     </div>
