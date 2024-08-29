@@ -1,12 +1,11 @@
 import { useState, useRef } from "react";
-import type { Dispatch, SetStateAction } from "react";
 import classNames from "classnames";
 import selectArrow from "@/assets/svg/select-arrow.svg";
 import { useOutsideClickCatcher } from "@/hooks/useOutsideClickCatcher";
 
 type Props = {
   options: Array<{ value: string | number; label: string }>;
-  onChange: Dispatch<SetStateAction<string>> | Dispatch<SetStateAction<number>>;
+  onChange: (value: string | number) => void;
   value: string | number;
   placeholder: string;
 };
@@ -17,7 +16,7 @@ const Select = ({ options, onChange, value, placeholder }: Props) => {
 
   const handleClickOption = (value: string | number) => {
     setIsOpen(!isOpen);
-    onChange(value as SetStateAction<string> & SetStateAction<number>);
+    onChange(value);
   };
 
   useOutsideClickCatcher(wrapperRef, setIsOpen);

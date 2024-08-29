@@ -110,7 +110,7 @@ const App = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-8 mt-5">
             <Select
               value={gender}
-              onChange={setGender}
+              onChange={(value) => setGender(value.toString())}
               options={[
                 { value: "Male", label: "Male" },
                 { value: "Female", label: "Female" },
@@ -132,7 +132,7 @@ const App = () => {
             />
             <Select
               value={activity}
-              onChange={setActivity}
+              onChange={(value) => setActivity(+value)}
               options={[
                 { value: 1.2, label: "A bit active" },
                 { value: 1.4, label: "Active" },
