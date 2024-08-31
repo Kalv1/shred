@@ -1,16 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
-import { useLocalData } from "@/hooks/useLocalData";
+import { useLocalData, UserContext } from "@/hooks/useLocalData";
 import Footer from "@/components/Footer";
 import Presentation from "@/components/Presentation";
 import Calculator from "@/components/Calculator";
 
 const App = () => {
-
   const { restoreMetaData } = useLocalData();
 
+  const [user, setUser] = useState(restoreMetaData());
+
+  console.log(user);
+
   useEffect(() => {
-    console.log('je suis dans le useEffect')
+    console.log("je suis dans le useEffect");
     restoreMetaData();
   }, []);
 
@@ -33,10 +36,17 @@ const App = () => {
             },
           ]}
         />
-        <Presentation/>
+        <Presentation />
       </div>
-      <Calculator/>
-      <Footer/>
+      <UserContext.Provider
+        value={{
+          user,
+          setUser,
+        }}
+      >
+        <Calculator />
+      </UserContext.Provider>
+      <Footer />
     </div>
   );
 };

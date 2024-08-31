@@ -1,43 +1,43 @@
 import { useMetabolismCalculator } from "@/hooks/useMetabolismCalculator";
+import { User } from "@/type";
+import { createContext } from "react";
 
+export const UserContext = createContext({
+  age: 18,
+  gender: "Male",
+  weight: 70,
+  height: 180,
+  activity: 1.2,
+  baseMetabolism: 0,
+});
 
 export const useLocalData = () => {
-
-  const { setGender, setAge, setWeight, setHeight, setActivity, setBaseMetabolism, gender, age, weight, height, activity, baseMetabolism } = useMetabolismCalculator();
-
-
-  const saveMetaData = () => {
-    console.log(gender, age, weight, height, activity)
+  const saveMetaData = (user: User) => {
     const data = {
-      gender,
-      age,
-      weight,
-      height,
-      activity,
-      baseMetabolism
-    }
+      gender: user.gender,
+      age: user.age,
+      weight: user.weight,
+      height: user.height,
+      activity: user.activity,
+      baseMetabolism: user.baseMetabolism,
+    };
     localStorage.setItem("user-data", JSON.stringify(data));
   };
 
   const restoreMetaData = () => {
     const data = localStorage.getItem("user-data");
+
     if (data) {
-      const parsedData = JSON.parse(data);
-
-      console.log('parsedData',parsedData)
-
-      setGender(parsedData.gender);
-      console.log(parsedData.gender, gender)
-
-      setAge(parsedData.age);
-      console.log(parsedData.age, age)
-
-      setWeight(parsedData.weight);
-      console.log(parsedData.weight, weight)
-
-      setHeight(parsedData.height);
-      setActivity(parsedData.activity);
-      setBaseMetabolism(parsedData.baseMetabolism);
+      return JSON.parse(data);
+    } else {
+      return {
+        age: 18,
+        gender: "Male",
+        weight: 70,
+        height: 180,
+        activity: 1.2,
+        baseMetabolism: 0,
+      };
     }
   };
 
