@@ -3,12 +3,15 @@ import { User } from "@/type";
 import { createContext } from "react";
 
 export const UserContext = createContext({
-  age: 18,
-  gender: "Male",
-  weight: 70,
-  height: 180,
-  activity: 1.2,
-  baseMetabolism: 0,
+  user: {
+    age: 18,
+    gender: "Male",
+    weight: 70,
+    height: 180,
+    activity: 1.2,
+    baseMetabolism: 0,
+  },
+  setUser: (user: User) => {},
 });
 
 export const useLocalData = () => {

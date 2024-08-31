@@ -42,19 +42,19 @@ const Calculator = () => {
           value={user.age}
           max={100}
           min={0}
-          onChange={(value) => setUser({ ...user, age: value })}
+          onChange={(value) => setUser({ ...user, age: +value })}
         />
         <NumberPicker
           value={user.weight}
           min={0}
           max={300}
-          onChange={(value) => setUser({ ...user, weight: value })}
+          onChange={(value) => setUser({ ...user, weight: +value })}
         />
         <NumberPicker
           value={user.height}
           min={0}
           max={300}
-          onChange={(value) => setUser({ ...user, height: value })}
+          onChange={(value) => setUser({ ...user, height: +value })}
         />
         <Select
           value={user.activity}
