@@ -10,13 +10,6 @@ const App = () => {
 
   const [user, setUser] = useState(restoreMetaData());
 
-  console.log(user);
-
-  useEffect(() => {
-    console.log("je suis dans le useEffect");
-    restoreMetaData();
-  }, []);
-
   return (
     <div className="w-full min-h-screen bg-black text-white">
       <div className="mx-auto container w-full">

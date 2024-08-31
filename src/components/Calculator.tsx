@@ -14,7 +14,12 @@ const Calculator = () => {
   const handleValidate = () => {
     const metabolism = calcBaseMetabolism();
 
-    saveMetaData(user);
+    saveMetaData({
+      ...user,
+      baseMetabolism: metabolism,
+    });
+
+    setUser({ ...user, baseMetabolism: metabolism });
   };
 
   return (
