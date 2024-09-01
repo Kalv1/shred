@@ -1,5 +1,5 @@
 import { UserContext } from "@/hooks/useLocalData";
-import { useContext, useMemo } from "react";
+import { useContext } from "react";
 
 const Macro = () => {
   const { user } = useContext(UserContext);

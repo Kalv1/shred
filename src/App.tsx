@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import { useLocalData, UserContext } from "@/hooks/useLocalData";
 import Footer from "@/components/Footer";

@@ -1,8 +1,10 @@
-import { useMetabolismCalculator } from "@/hooks/useMetabolismCalculator";
 import { User } from "@/type";
-import { createContext } from "react";
+import { createContext, Dispatch } from "react";
 
-export const UserContext = createContext({
+export const UserContext = createContext<{
+  user: User;
+  setUser: Dispatch<User>;
+}>({
   user: {
     age: 18,
     gender: "Male",
@@ -11,7 +13,7 @@ export const UserContext = createContext({
     activity: 1.2,
     baseMetabolism: 0,
   },
-  setUser: (user: User) => {},
+  setUser: () => {},
 });
 
 export const useLocalData = () => {
