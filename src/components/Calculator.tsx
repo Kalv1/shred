@@ -3,6 +3,7 @@ import { useLocalData, UserContext } from "@/hooks/useLocalData";
 import Select from "@/components/Select";
 import NumberPicker from "@/components/NumberPicker";
 import { useContext } from "react";
+import { Icon } from "@iconify/react";
 
 const Calculator = () => {
   const { user, setUser } = useContext(UserContext);
@@ -29,49 +30,105 @@ const Calculator = () => {
         <small className="text-xs font-normal ml-2">(Harris-Benedict)</small>
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-8 mt-5">
-        <Select
-          value={user.gender}
-          onChange={(value) => setUser({ ...user, gender: value.toString() })}
-          options={[
-            { value: "Male", label: "Male" },
-            { value: "Female", label: "Female" },
-          ]}
-          placeholder="Select your gender"
-        />
-        <NumberPicker
-          value={user.age}
-          max={100}
-          min={0}
-          onChange={(value) => setUser({ ...user, age: +value })}
-        />
-        <NumberPicker
-          value={user.weight}
-          min={0}
-          max={300}
-          onChange={(value) => setUser({ ...user, weight: +value })}
-        />
-        <NumberPicker
-          value={user.height}
-          min={0}
-          max={300}
-          onChange={(value) => setUser({ ...user, height: +value })}
-        />
-        <Select
-          value={user.activity}
-          onChange={(value) => setUser({ ...user, activity: +value })}
-          options={[
-            { value: 1.2, label: "A bit active" },
-            { value: 1.4, label: "Active" },
-            { value: 1.8, label: "Very active" },
-          ]}
-          placeholder="Select your gender"
-        />
-        <button
-          className="rounded bg-primary uppercase font-bold py-2 h-fit"
-          onClick={() => handleValidate()}
-        >
-          Confirm
-        </button>
+        <label>
+          <p className="font-bold text-md uppercase text-[#8D8D8D]">
+            Gender
+            <Icon
+              className="inline-flex ml-1"
+              icon="fa:transgender"
+              color="8D8D8D"
+            ></Icon>
+          </p>
+
+          <Select
+            value={user.gender}
+            onChange={(value) => setUser({ ...user, gender: value.toString() })}
+            options={[
+              { value: "Male", label: "Male" },
+              { value: "Female", label: "Female" },
+            ]}
+            placeholder="Select your gender"
+          />
+        </label>
+        <label>
+          <p className="font-bold text-md uppercase text-[#8D8D8D]">
+            Age
+            <Icon
+              className="inline-flex ml-1"
+              icon="ph:user"
+              color="8D8D8D"
+            ></Icon>
+          </p>
+          <NumberPicker
+            value={user.age}
+            max={100}
+            min={0}
+            onChange={(value) => setUser({ ...user, age: +value })}
+          />
+        </label>
+
+        <label>
+          <p className="font-bold text-md uppercase text-[#8D8D8D]">
+            Weight
+            <Icon
+              className="inline-flex ml-1"
+              icon="ion:scale-sharp"
+              color="8D8D8D"
+            ></Icon>
+          </p>
+          <NumberPicker
+            value={user.weight}
+            min={0}
+            max={300}
+            onChange={(value) => setUser({ ...user, weight: +value })}
+          />
+        </label>
+
+        <label>
+          <p className="font-bold text-md uppercase text-[#8D8D8D]">
+            Height
+            <Icon
+              className="inline-flex ml-1"
+              icon="mdi:ruler"
+              color="8D8D8D"
+            ></Icon>
+          </p>
+          <NumberPicker
+            value={user.height}
+            min={0}
+            max={300}
+            onChange={(value) => setUser({ ...user, height: +value })}
+          />
+        </label>
+
+        <label>
+          <p className="font-bold text-md uppercase text-[#8D8D8D]">
+            Height
+            <Icon
+              className="inline-flex ml-1"
+              icon="mdi:run"
+              color="8D8D8D"
+            ></Icon>
+          </p>
+          <Select
+            value={user.activity}
+            onChange={(value) => setUser({ ...user, activity: +value })}
+            options={[
+              { value: 1.2, label: "A bit active" },
+              { value: 1.4, label: "Active" },
+              { value: 1.8, label: "Very active" },
+            ]}
+            placeholder="Select your gender"
+          />
+        </label>
+        <div className="w-full flex items-end">
+          <button
+            className="rounded bg-primary uppercase font-bold py-2.5 h-fit w-full border border-white/15"
+            onClick={() => handleValidate()}
+          >
+            Confirm
+          </button>
+        </div>
       </div>
       {user.baseMetabolism !== 0 && (
         <>
