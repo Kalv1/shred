@@ -27,7 +27,7 @@ const Select = ({ options, onChange, value, placeholder }: Props) => {
         className="bg-black rounded font-inter text-white font-bold p-2.5 uppercase border border-white/15 flex items-center justify-between"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <p>
+        <p className="truncate">
           {value
             ? options.find((option) => option.value === value)?.label
             : placeholder}
@@ -53,7 +53,7 @@ const Select = ({ options, onChange, value, placeholder }: Props) => {
               )}
               onClick={() => handleClickOption(option.value)}
             >
-              <p className="text-white">{option.label}</p>
+              <p className="text-white truncate">{option.label}</p>
             </li>
           ))}
         </ul>

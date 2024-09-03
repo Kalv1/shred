@@ -4,5 +4,6 @@ export type User = {
   weight: number;
   height: number;
   activity: number;
+  objective: number;
   baseMetabolism: number;
 };

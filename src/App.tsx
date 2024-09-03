@@ -38,7 +38,7 @@ const App = () => {
           setUser,
         }}
       >
-        <div className="w-full relative bg-[#161616] mt-48 mb-64">
+        <div className="w-full relative bg-[#161616] mt-48 mb-64 py-7">
           <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent left-1/2 -translate-x-1/2 absolute top-0 z-[2]" />
           <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white to-transparent left-1/2 -translate-x-1/2 absolute bottom-0 z-[2]" />
           <Calculator />

@@ -5,13 +5,13 @@ export const useMetabolismCalculator = (user: User) => {
     switch (user.gender) {
       case "Male":
         return (
-          (10 * user.weight + 6.25 * user.height - 5 * user.age + 5) *
-          user.activity
+          ((10 * user.weight + 6.25 * user.height - 5 * user.age + 5) *
+          user.activity) * user.objective
         );
       case "Female":
         return (
-          (10 * user.weight + 6.25 * user.height - 5 * user.age - 161) *
-          user.activity
+          ((10 * user.weight + 6.25 * user.height - 5 * user.age - 161) *
+          user.activity) * user.objective
         );
       default:
         return 5;

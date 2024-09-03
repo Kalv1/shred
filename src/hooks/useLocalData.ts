@@ -11,6 +11,7 @@ export const UserContext = createContext<{
     weight: 70,
     height: 180,
     activity: 1.2,
+    objective: 1,
     baseMetabolism: 0,
   },
   setUser: () => {},
@@ -18,15 +19,7 @@ export const UserContext = createContext<{
 
 export const useLocalData = () => {
   const saveMetaData = (user: User) => {
-    const data = {
-      gender: user.gender,
-      age: user.age,
-      weight: user.weight,
-      height: user.height,
-      activity: user.activity,
-      baseMetabolism: user.baseMetabolism,
-    };
-    localStorage.setItem("user-data", JSON.stringify(data));
+    localStorage.setItem("user-data", JSON.stringify(user));
   };
 
   const restoreMetaData = () => {
@@ -38,9 +31,10 @@ export const useLocalData = () => {
       return {
         age: 18,
         gender: "Male",
-        weight: 70,
+        weight: 80,
         height: 180,
         activity: 1.2,
+        objective: 1,
         baseMetabolism: 0,
       };
     }
