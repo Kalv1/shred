@@ -24,7 +24,7 @@ const Macro = () => {
           (Macronutrients for a healthy lifestyle)
         </small>
       </h2>
-      <div className="grid-cols-1 md:grid-cols-3 grid gap-5 mt-3 lg:max-w-[40%] mx-auto">
+      <div className="grid-cols-1 md:grid-cols-3 grid gap-5 mt-3 lg:max-w-[50%] mx-auto">
         <div className="text-center gap-5 mt-3 font-clash">
           <p className="font-bold uppercase text-xl">Proteins<span className="text-primary">.</span></p>
           <p>{Math.round(protein())} grams/day ⋍ 30%</p>

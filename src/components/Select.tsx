@@ -24,7 +24,7 @@ const Select = ({ options, onChange, value, placeholder }: Props) => {
   return (
     <div ref={wrapperRef} className="relative w-full">
       <div
-        className="bg-black rounded font-inter text-white font-bold p-2.5 uppercase border border-white/15 flex items-center justify-between"
+        className="bg-black cursor-pointer rounded font-inter text-white font-bold p-2.5 uppercase border border-white/15 flex items-center justify-between"
         onClick={() => setIsOpen(!isOpen)}
       >
         <p className="truncate">
@@ -41,7 +41,7 @@ const Select = ({ options, onChange, value, placeholder }: Props) => {
         />
       </div>
       {isOpen && (
-        <ul className="absolute bg-black rounded w-full border border-white/15 h-fit left-0 -bottom-1 translate-y-full z-50 uppercase font-bold font-inter">
+        <ul className="absolute bg-black cursor-pointer rounded w-full border border-white/15 h-fit left-0 -bottom-1 translate-y-full z-50 uppercase font-bold font-inter">
           {options.map((option, index) => (
             <li
               key={index}
