@@ -57,7 +57,7 @@ const TrackingTable = ({ onReset, setTracking, tracking }: Props) => {
                 <tr key={index}>
                   <td>
                     <input
-                      value={item.breakfast}
+                      value={item.breakfast.toString()}
                       type="number"
                       onChange={(e) =>
                         handleChangeTracking(
@@ -71,7 +71,7 @@ const TrackingTable = ({ onReset, setTracking, tracking }: Props) => {
                   </td>
                   <td>
                     <input
-                      value={item.lunch}
+                      value={item.lunch.toString()}
                       type="number"
                       onChange={(e) =>
                         handleChangeTracking(index, +e.target.value, "lunch")
@@ -81,7 +81,7 @@ const TrackingTable = ({ onReset, setTracking, tracking }: Props) => {
                   </td>
                   <td>
                     <input
-                      value={item.dinner}
+                      value={item.dinner.toString()}
                       type="number"
                       onChange={(e) =>
                         handleChangeTracking(index, +e.target.value, "dinner")
@@ -91,7 +91,7 @@ const TrackingTable = ({ onReset, setTracking, tracking }: Props) => {
                   </td>
                   <td>
                     <input
-                      value={item.snack}
+                      value={item.snack.toString()}
                       type="number"
                       onChange={(e) =>
                         handleChangeTracking(index, +e.target.value, "snack")
