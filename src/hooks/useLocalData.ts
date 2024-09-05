@@ -1,4 +1,4 @@
-import { User } from "@/type";
+import { Tracking, User } from "@/type";
 import { createContext, Dispatch } from "react";
 
 export const UserContext = createContext<{
@@ -22,6 +22,20 @@ export const useLocalData = () => {
     localStorage.setItem("user-data", JSON.stringify(user));
   };
 
+  const saveTracking = (tracking: Tracking[]) => {
+    localStorage.setItem("tracking", JSON.stringify(tracking));
+  };
+
+  const restoreTracking = () => {
+    const data = localStorage.getItem("tracking");
+
+    if (data) {
+      return JSON.parse(data);
+    } else {
+      return [];
+    }
+  };
+
   const restoreMetaData = () => {
     const data = localStorage.getItem("user-data");
 
@@ -43,5 +57,7 @@ export const useLocalData = () => {
   return {
     saveMetaData,
     restoreMetaData,
+    saveTracking,
+    restoreTracking,
   };
 };

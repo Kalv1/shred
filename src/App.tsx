@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import { useLocalData, UserContext } from "@/hooks/useLocalData";
 import Footer from "@/components/Footer";
@@ -6,11 +6,21 @@ import Presentation from "@/components/Presentation";
 import Calculator from "@/components/Calculator";
 import Macro from "@/components/Macro";
 import TrackingTable from "@/components/TrackingTable";
+import { Tracking } from "./type";
 
 const App = () => {
-  const { restoreMetaData } = useLocalData();
+  const { restoreMetaData, saveTracking, restoreTracking } = useLocalData();
 
   const [user, setUser] = useState(restoreMetaData());
+  const [tracking, setTracking] = useState<Tracking[]>(restoreTracking());
+
+  const handleTrackingReset = () => {
+    setTracking([]);
+  };
+
+  useEffect(() => {
+    saveTracking(tracking);
+  }, [tracking]);
 
   return (
     <div className="w-full min-h-screen bg-black text-white">
@@ -46,7 +56,11 @@ const App = () => {
           {user.baseMetabolism !== 0 && <Macro />}
         </div>
 
-        <TrackingTable />
+        <TrackingTable
+          onReset={handleTrackingReset}
+          setTracking={setTracking}
+          tracking={tracking}
+        />
       </UserContext.Provider>
       <Footer />
     </div>

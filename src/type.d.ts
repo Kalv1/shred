@@ -14,5 +14,4 @@ export type Tracking = {
   lunch: number;
   dinner: number;
   snack: number;
-  total: number;
 };

@@ -1,40 +1,45 @@
-import { useContext, useState } from "react";
-import { UserContext } from "@/hooks/useLocalData";
 import { Tracking } from "@/type";
 
-const TrackingTable = () => {
-  const { user, setUser } = useContext(UserContext);
+type Props = {
+  onReset: () => void;
+  setTracking: (newTracking: Tracking[]) => void;
+  tracking: Tracking[];
+};
 
-  const [tracking, setTracking] = useState<Tracking[] | undefined>(
-    user.tracking
-  );
-
-  const editTracking = (index: number, value: string, meal: string) => {
-    const newTracking = user.tracking ?? [];
-    switch (meal) {
-      case "breakfast":
-        newTracking[index].breakfast = +value;
-        break;
-      case "lunch":
-        newTracking[index].lunch = +value;
-        break;
-      case "dinner":
-        newTracking[index].dinner = +value;
-        break;
-      case "snack":
-        newTracking[index].snack = +value;
-        break;
-      default:
-        break;
+const TrackingTable = ({ onReset, setTracking, tracking }: Props) => {
+  if (tracking.length === 0) {
+    const table = [];
+    for (let i = 0; i < 7; i++) {
+      table.push({
+        breakfast: 0,
+        lunch: 0,
+        dinner: 0,
+        snack: 0,
+      });
     }
-    setUser({ ...user, tracking: newTracking });
+    setTracking(table);
+  }
+
+  const handleChangeTracking = (index: number, value: number, type: string) => {
+    const newTracking: Tracking[] = [...tracking];
+    newTracking[index][type as keyof Tracking] = value;
+    setTracking(newTracking);
   };
 
   return (
-    <div className="container mx-auto">
-      <h2 className="font-bold text-2xl font-clash uppercase mb-5">
-        Calories tracking<span className="text-primary">.</span>
-      </h2>
+    <div className="container mx-auto mb-16">
+      <div className="flex justify-between items-center mb-5">
+        <h2 className="font-bold text-2xl font-clash uppercase">
+          Calories tracking<span className="text-primary">.</span>
+        </h2>
+        <button
+          onClick={onReset}
+          className="bg-primary text-white rounded px-4 py-2 font-bold uppercase font-clash"
+        >
+          Reset
+        </button>
+      </div>
+
       <div className="border border-white/15 rounded overflow-hidden">
         <table className="w-full table-auto text-left font-clash uppercase">
           <thead className="bg-[#161616]">
@@ -47,55 +52,64 @@ const TrackingTable = () => {
             </tr>
           </thead>
           <tbody>
-            {
-              !user.tracking?.map((el, index) => {
-                <tr>
-                  <td className="text-center py-2 px-4">
+            {tracking.map((item, index) => {
+              return (
+                <tr key={index}>
+                  <td>
                     <input
-                      type="text"
-                      value={el.breakfast}
+                      value={item.breakfast}
+                      type="number"
                       onChange={(e) =>
-                        editTracking(index, e.target.value, "breakfast")
+                        handleChangeTracking(
+                          index,
+                          +e.target.value,
+                          "breakfast"
+                        )
                       }
-                      className="bg-transparent outline-none w-full h-full text-center"
+                      className="bg-transparent w-full text-center outline-none"
                     />
                   </td>
-                  <td className="text-center py-2 px-4">
+                  <td>
                     <input
-                      type="text"
-                      value={el.lunch}
+                      value={item.lunch}
+                      type="number"
                       onChange={(e) =>
-                        editTracking(index, e.target.value, "lunch")
+                        handleChangeTracking(index, +e.target.value, "lunch")
                       }
-                      className="bg-transparent outline-none w-full h-full text-center"
+                      className="bg-transparent w-full text-center outline-none"
                     />
                   </td>
-                  <td className="text-center py-2 px-4">
+                  <td>
                     <input
-                      type="text"
-                      value={el.dinner}
+                      value={item.dinner}
+                      type="number"
                       onChange={(e) =>
-                        editTracking(index, e.target.value, "dinner")
+                        handleChangeTracking(index, +e.target.value, "dinner")
                       }
-                      className="bg-transparent outline-none w-full h-full text-center"
+                      className="bg-transparent w-full text-center outline-none"
                     />
                   </td>
-                  <td className="text-center py-2 px-4">
+                  <td>
                     <input
-                      type="text"
-                      value={el.snack}
+                      value={item.snack}
+                      type="number"
                       onChange={(e) =>
-                        editTracking(index, e.target.value, "snack")
+                        handleChangeTracking(index, +e.target.value, "snack")
                       }
-                      className="bg-transparent outline-none w-full h-full text-center"
+                      className="bg-transparent w-full text-center outline-none"
                     />
                   </td>
-                  <td className="text-center py-2 px-4">
-                    <p>{el.breakfast + el.lunch + el.dinner + el.snack}</p>
+                  <td>
+                    <p className="w-full text-center py-2">
+                      {(item.breakfast ?? 0) +
+                        (item.lunch ?? 0) +
+                        (item.dinner ?? 0) +
+                        (item.snack ?? 0)}
+                    </p>
                   </td>
-                </tr>;
-              })
-            }
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

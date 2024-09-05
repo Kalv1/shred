@@ -25,9 +25,11 @@ const Calculator = () => {
 
   return (
     <div className="container mx-auto font-clash mb-7">
-      <h2 className="font-bold text-2xl">
-        CALCULATOR<span className="text-primary">.</span>
-        <small className="text-xs font-normal ml-2">(Harris-Benedict)</small>
+      <h2 className="font-bold text-2xl uppercase text-center md:text-left">
+        Calculator<span className="text-primary">.</span>
+        <small className="text-xs font-normal ml-2 hidden md:inline-flex">
+          (Harris-Benedict)
+        </small>
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-4 xl:grid-cols-7 gap-8 mt-5">
         <label>
@@ -69,8 +71,8 @@ const Calculator = () => {
 
         <label>
           <p className="font-bold text-md uppercase text-[#8D8D8D]">
-          Weight <small>(kg)</small>
-          <Icon
+            Weight <small>(kg)</small>
+            <Icon
               className="inline-flex ml-1"
               icon="ion:scale-sharp"
               color="8D8D8D"
